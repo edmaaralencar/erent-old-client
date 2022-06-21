@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  width: 100%;
-  max-width: 21.6rem;
+  position: absolute;
+  right: 0;
+  top: 5.4rem;
+
+  /* width: 100%; */
+  width: 25rem;
   padding: 0.6rem 0;
 
   background-color: ${({ theme }) => theme.colors.gray.lighter};
@@ -15,7 +19,6 @@ export const Link = styled.a`
   gap: 1.2rem;
 
   width: 100%;
-  max-width: 21.6rem;
   padding: 1.2rem 2.4rem;
 
   text-decoration: none;
