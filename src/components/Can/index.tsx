@@ -3,17 +3,20 @@ import { ReactNode } from 'react'
 
 interface CanProps {
   children: ReactNode
+  isAdmin?: boolean
 }
 
-function Can({ children }: CanProps) {
+function Can({ children, isAdmin = false }: CanProps) {
   const { isAuthenticated, user } = useAuth()
 
   if (!isAuthenticated) {
     return null
   }
 
-  if (!user?.isAdmin) {
-    return null
+  if (isAdmin) {
+    if (!user?.isAdmin) {
+      return null
+    }
   }
 
   return <>{children}</>
