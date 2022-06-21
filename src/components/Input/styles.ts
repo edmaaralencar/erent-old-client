@@ -57,7 +57,10 @@ export const Wrapper = styled.div<WrapperProps>`
     }
 
     .error {
-      margin-top: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
 
       font-size: 1.3rem;
       color: ${theme.colors.red.main};

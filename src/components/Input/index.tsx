@@ -1,3 +1,5 @@
+import { MdErrorOutline } from 'react-icons/md'
+
 import {
   forwardRef,
   ForwardRefRenderFunction,
@@ -23,7 +25,12 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       <label htmlFor={name}>{label}</label>
       <input name={name} ref={ref} {...rest} />
 
-      {!!error && <span className="error">{error.message}</span>}
+      {!!error && (
+        <span className="error">
+          <MdErrorOutline size={18} color="#C10000" />
+          {error.message}
+        </span>
+      )}
     </S.Wrapper>
   )
 }
