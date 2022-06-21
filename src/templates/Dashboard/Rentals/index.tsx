@@ -36,8 +36,6 @@ function RentalsTemplate() {
 
   const { data } = useRentals({ currentPage, registersPerPage })
 
-  console.log(data)
-
   return (
     <S.Wrapper>
       <S.ScrollWrapper>
