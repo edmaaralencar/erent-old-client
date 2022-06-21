@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.container};
@@ -38,7 +38,10 @@ export const Textarea = styled.div`
     }
 
     .error {
-      margin-top: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
 
       font-size: 1.3rem;
       color: ${theme.colors.red.main};

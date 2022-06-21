@@ -15,6 +15,7 @@ import Input from 'components/Input'
 import * as S from './styles'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import { useOptions } from 'services/hooks/useOptions'
+import { MdErrorOutline } from 'react-icons/md'
 
 type Option = {
   name: string
@@ -95,7 +96,7 @@ function CreatePropertyTemplate() {
 
     await createProperty.mutateAsync(formData)
     reset()
-    router.push('/dashboard/properties')
+    // router.push('/dashboard/properties')
     toast.success('Propriedade com sucesso.')
   }
 
@@ -206,7 +207,11 @@ function CreatePropertyTemplate() {
           <label htmlFor="description">Descrição</label>
           <textarea {...register('description')} />
           {!!errors.description && (
-            <span className="error">{errors.description.message}</span>
+            <span className="error">
+              <MdErrorOutline size={18} color="#C10000" />
+
+              {errors.description.message}
+            </span>
           )}
         </S.Textarea>
         <Input
