@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import api from 'services/apiClient'
 import { Option } from './useOptions'
 
-type Property = {
+export type Property = {
   id: string
   name: string
   description: string
@@ -51,7 +51,7 @@ export async function getProperties({
         month: 'long',
         year: 'numeric'
       }),
-      options: property.options.map((option: any) => option.option),
+      options: property.options,
       images: property.images.map((image: any) => ({
         image_url: `http://localhost:3333/files/${image.image_name}`
       }))
