@@ -49,7 +49,8 @@ export function signOut() {
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>({} as User)
-  const isAuthenticated = !!user
+  // const isAuthenticated = !!user
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
     const { 'erent.token': token } = parseCookies()
@@ -61,9 +62,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           const { name, email, avatar, isAdmin } = response.data
 
           setUser({ name, email, avatar, isAdmin })
+          setIsAuthenticated(true)
         })
         .catch(() => {
           signOut()
+          setIsAuthenticated(false)
         })
     }
   }, [])
@@ -89,11 +92,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         isAdmin: user.isAdmin
       })
 
+      setIsAuthenticated(true)
+
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       Router.push('/')
     } catch (error) {
       console.log(error)
+      setIsAuthenticated(false)
     }
   }
 
