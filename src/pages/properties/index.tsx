@@ -1,8 +1,15 @@
 import { GetServerSideProps } from 'next'
 import api from 'services/apiClient'
+import { Property } from 'services/hooks/useProperties'
+import PropertiesTemplate from 'templates/Properties'
 
-export default function Properties() {
-  return <h1>Properties</h1>
+export type PropertiesProps = {
+  properties: Property[]
+}
+
+export default function Properties({ properties }: PropertiesProps) {
+  console.log(properties)
+  return <PropertiesTemplate />
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
