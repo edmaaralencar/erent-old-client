@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 
 import { FaBed, FaBath } from 'react-icons/fa'
 import { FiCoffee } from 'react-icons/fi'
-import { useQuery } from 'react-query'
 import { useOptions } from 'services/hooks/useOptions'
 
 import Heading from 'components/Heading'
@@ -13,11 +12,13 @@ import * as S from './styles'
 import { queryClient } from 'services/queryClient'
 
 type Option = {
-  option: Record<string, unknown>
+  id: number
+  name: string
+  propertyHas: boolean
 }
 
 function PropertyTemplate() {
-  const [formattedOptions, setFormattedOptions] = useState<any[]>([])
+  const [formattedOptions, setFormattedOptions] = useState<Option[]>([])
   const {
     query: { id }
   } = useRouter()
@@ -28,14 +29,12 @@ function PropertyTemplate() {
   useEffect(() => {
     const arr = []
 
-    const propertyOptions = property?.options.map((item: Option) => {
-      return item.option
-    })
-
     for (const key in options) {
       const option = options[key]
 
-      if (propertyOptions.some((item: any) => item.id === option.id)) {
+      if (
+        property?.options.some((item: { id: number }) => item.id === option.id)
+      ) {
         arr.push({ ...option, propertyHas: true })
       } else {
         arr.push({ ...option, propertyHas: false })
@@ -87,7 +86,7 @@ function PropertyTemplate() {
       <S.Body>{property?.description}</S.Body>
 
       <S.Options>
-        {formattedOptions.map((option: any) => (
+        {formattedOptions.map((option: Option) => (
           <S.Option propertyHas={option.propertyHas} key={option.id}>
             <S.OptionIcon>
               <FiCoffee size={40} color="47474D" />
