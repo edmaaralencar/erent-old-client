@@ -96,7 +96,7 @@ function CreatePropertyTemplate() {
 
     await createProperty.mutateAsync(formData)
     reset()
-    // router.push('/dashboard/properties')
+    router.push('/dashboard/properties')
     toast.success('Propriedade com sucesso.')
   }
 
