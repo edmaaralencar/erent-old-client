@@ -1,10 +1,14 @@
-const theme = {
-  container: '130rem',
+export default {
+  container: {
+    dashboard: '130rem',
+    app: '120rem'
+  },
   font: {
     family: 'Inter, sans-serif',
     sizes: {
+      small: '2.4rem',
       medium: '3.6rem',
-      large: '4rem',
+      large: '3.8rem',
       xlarge: '4.8rem',
       huge: '7.2rem'
     },
@@ -43,12 +47,5 @@ const theme = {
       main: '#DE3838',
       dark: '#B2122C'
     }
-  }
-}
-
-export default theme
-
-const objeto = {
-  nome: 'Maria Luísa',
-  idade: 18
+  } as const
 }

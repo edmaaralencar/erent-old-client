@@ -47,7 +47,7 @@ export const Header = styled.header`
 
 export const HeaderContainer = styled.div`
   margin: 0 auto;
-  max-width: ${({ theme }) => theme.container};
+  max-width: ${({ theme }) => theme.container.dashboard};
 
   padding: 0 3.2rem;
 

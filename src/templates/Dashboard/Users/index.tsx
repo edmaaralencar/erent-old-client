@@ -38,7 +38,7 @@ function UsersTemplate() {
               </S.Td>
               <S.Td className="name">{user.name}</S.Td>
               <S.Td className="email">{user.email}</S.Td>
-              <S.Td>{user.rentals}</S.Td>
+              <S.Td>{user.rentals > 0 ? user.rentals : 'Nenhum'}</S.Td>
               <S.Td>{user.role}</S.Td>
             </S.Tr>
           ))}

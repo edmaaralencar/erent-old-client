@@ -1,3 +1,4 @@
+import { useAuth } from 'context/AuthContext'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -8,12 +9,13 @@ import {
   FiBookOpen,
   FiCopy
 } from 'react-icons/fi'
+import { BiArrowBack } from 'react-icons/bi'
 
-import { signOut } from 'context/AuthContext'
 import * as S from './styles'
 
 function Sidebar() {
   const router = useRouter()
+  const { signOut } = useAuth()
 
   return (
     <S.Wrapper>
@@ -62,6 +64,9 @@ function Sidebar() {
       <S.NavButton onClick={signOut} as="button">
         <FiLogOut size={24} color="#FFFFFF" />
       </S.NavButton>
+      {/* <S.NavButton onClick={signOut} as="button">
+        <BiArrowBack size={24} color="#FFFFFF" />
+      </S.NavButton> */}
     </S.Wrapper>
   )
 }

@@ -12,8 +12,6 @@ export const Wrapper = styled('h1').attrs<WrapperProps>(({ level }) => ({
   as: `h${level}`
 }))<WrapperProps>`
   ${({ theme, size, color, weight }) => css`
-    // font-size: ${theme.font.sizes[size]};
-
     font-size: min(${theme.font.sizes[size]}, 10vw);
     color: ${theme.colors[color].main};
     font-weight: ${theme.font.weight[weight]};

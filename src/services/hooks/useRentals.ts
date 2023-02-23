@@ -40,7 +40,7 @@ export async function getRentals({
       user: rental.user.name,
       property_id: rental.property_id,
       property: {
-        name: `${rental.property.name} - ${rental.property.city}`
+        name: rental.property.name
       },
       created_at: new Date(rental.created_at).toLocaleDateString('pt-BR', {
         day: '2-digit',

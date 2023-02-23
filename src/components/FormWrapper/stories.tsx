@@ -22,10 +22,34 @@ export const Default: Story<FormWrapperProps> = args => (
 Default.args = {
   children: (
     <>
-      <Input key="1" variant="normal" label="Nome da propriedade" name="name" />
-      <Input key="2" variant="normal" label="Cidade" name="name" />
-      <Input key="31" variant="normal" label="Região" name="name" />
-      <Input key="4" variant="normal" label="Descrição" name="name" />
+      <Input
+        error={{ message: 'oi' }}
+        key="1"
+        variant="normal"
+        label="Nome da propriedade"
+        name="name"
+      />
+      <Input
+        error={{ message: 'oi' }}
+        key="2"
+        variant="normal"
+        label="Cidade"
+        name="name"
+      />
+      <Input
+        error={{ message: 'oi' }}
+        key="31"
+        variant="normal"
+        label="Região"
+        name="name"
+      />
+      <Input
+        error={{ message: 'oi' }}
+        key="4"
+        variant="normal"
+        label="Descrição"
+        name="name"
+      />
     </>
   ),
   cancelHref: '/dashboard/properties'

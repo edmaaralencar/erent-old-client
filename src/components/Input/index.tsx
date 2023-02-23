@@ -21,7 +21,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   ref
 ) => {
   return (
-    <S.Wrapper variant={variant}>
+    <S.Wrapper variant={variant} error={!!error && !!error.message}>
       <label htmlFor={name}>{label}</label>
       <input name={name} ref={ref} {...rest} />
 

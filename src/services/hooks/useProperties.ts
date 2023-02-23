@@ -21,14 +21,20 @@ export type Property = {
 type FunctionProps = {
   currentPage: number
   registersPerPage: number
+  daily_price?: number
+  region?: string | string[]
+  rooms?: number
 }
 
 export async function getProperties({
   currentPage,
-  registersPerPage
+  registersPerPage,
+  daily_price,
+  region,
+  rooms
 }: FunctionProps) {
   const { data } = await api.get(
-    `/properties?page=${currentPage}&per_page=${registersPerPage}`
+    `/properties?page=${currentPage}&per_page=${registersPerPage}&daily_price=${daily_price}&rooms=${rooms}&region=${region}`
   )
 
   const properties = data.properties.map((property: Property) => {
@@ -70,7 +76,10 @@ export function useProperties({
     () =>
       getProperties({
         currentPage,
-        registersPerPage
+        registersPerPage,
+        region: '',
+        daily_price: 0,
+        rooms: 0
       }),
     {
       staleTime: 1000 * 60 * 10 // 10 minutes

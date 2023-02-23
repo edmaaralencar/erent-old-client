@@ -8,20 +8,22 @@ import {
 import api from 'services/apiClient'
 import { parseCookies, setCookie, destroyCookie } from 'nookies'
 import Router from 'next/router'
+import { toast } from 'react-toastify'
 
 type User = {
   name: string
   email: string
   avatar: string
   isAdmin: boolean
+  id: string
 }
 
-type SignInCredentials = {
+export type SignInCredentials = {
   email: string
   password: string
 }
 
-type SignUpCredentials = {
+export type SignUpCredentials = {
   name: string
   email: string
   password: string
@@ -49,7 +51,6 @@ export function signOut() {
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User>({} as User)
-  // const isAuthenticated = !!user
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
@@ -59,9 +60,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       api
         .get('/users/me')
         .then(response => {
-          const { name, email, avatar, isAdmin } = response.data
+          const { name, email, avatar, isAdmin, id } = response.data
 
-          setUser({ name, email, avatar, isAdmin })
+          setUser({ name, email, avatar, isAdmin, id })
           setIsAuthenticated(true)
         })
         .catch(() => {
@@ -70,6 +71,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         })
     }
   }, [])
+
+  function signOut() {
+    destroyCookie(undefined, 'erent.token')
+    setUser({} as User)
+    setIsAuthenticated(false)
+
+    Router.push('/')
+  }
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
@@ -86,6 +95,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       })
 
       setUser({
+        id: user.id,
         name: user.name,
         avatar: user.avatar,
         email,
@@ -98,6 +108,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
       Router.push('/')
     } catch (error) {
+      toast.error('Credenciais inválidas.')
       console.log(error)
       setIsAuthenticated(false)
     }
@@ -110,14 +121,25 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
         email,
         password
       })
+
+      toast.success('Conta criada com sucesso.')
+
+      Router.push('/sign-in')
     } catch (error) {
+      toast.error('Ocorreu um erro.')
       console.log(error)
     }
   }
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, signIn, signUp, signOut }}
+      value={{
+        user,
+        isAuthenticated,
+        signIn,
+        signUp,
+        signOut
+      }}
     >
       {children}
     </AuthContext.Provider>

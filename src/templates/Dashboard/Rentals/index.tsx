@@ -3,36 +3,9 @@ import { useState } from 'react'
 import { useRentals } from 'services/hooks/useRentals'
 import * as S from './styles'
 
-const rentals = [
-  {
-    id: 0,
-    user: 'Edmar Alencar',
-    property: 'Casa na praia - Búzios',
-    check_in: '10/02/2023',
-    checkout: '15/02/2023',
-    total: 'R$ 3000,00'
-  },
-  {
-    id: 1,
-    user: 'Edmar Alencar',
-    property: 'Casa na praia - Búzios',
-    check_in: '10/02/2023',
-    checkout: '15/02/2023',
-    total: 'R$ 3000,00'
-  },
-  {
-    id: 2,
-    user: 'Edmar Alencar',
-    property: 'Casa na praia - Búzios',
-    check_in: '10/02/2023',
-    checkout: '15/02/2023',
-    total: 'R$ 3000,00'
-  }
-]
-
 function RentalsTemplate() {
   const [currentPage, setCurrentPage] = useState(1)
-  const [registersPerPage, setRegistersPerPage] = useState(5)
+  const [registersPerPage] = useState(5)
 
   const { data } = useRentals({ currentPage, registersPerPage })
 

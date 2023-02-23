@@ -50,7 +50,6 @@ const createPropertyFormSchema = yup.object().shape({
 })
 
 function CreatePropertyTemplate() {
-  const router = useRouter()
   const [images, setImages] = useState<{ fileName: string; size: number }[]>([])
   const [openOptions, setOpenOptions] = useState(false)
   const [options, setOptions] = useState<any[]>([])
@@ -61,8 +60,7 @@ function CreatePropertyTemplate() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-    reset
+    formState: { errors, isSubmitting }
   } = useForm({ resolver: yupResolver(createPropertyFormSchema) })
 
   const createProperty = useMutation(

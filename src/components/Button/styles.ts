@@ -17,16 +17,16 @@ const wrapperModifiers = {
   medium: () => css`
     max-width: 16.1rem;
     padding: 1.9rem 0;
-    height: 6.1rem;
+    height: 5.2rem;
 
-    font-size: 2rem;
+    font-size: 1.6rem;
 
     border-radius: 1.2rem;
   `,
   large: () => css`
     max-width: 33rem;
     padding: 1.7rem 0;
-    height: 5.7rem;
+    height: 5.2rem;
 
     font-size: 1.8rem;
   `,
@@ -46,7 +46,12 @@ const wrapperModifiers = {
   outlined: (theme: DefaultTheme) => css`
     background-color: transparent;
     color: ${theme.colors.gray.darker};
-    border: 1px solid #dedee3;
+    border: 3px solid #dedee3;
+
+    &:hover {
+      border-color: ${theme.colors.primary.main};
+      color: ${theme.colors.primary.main};
+    }
 
     .spinner {
       border-left-color: ${({ theme }) => theme.colors.primary.main} !important;
@@ -106,6 +111,10 @@ export const Wrapper = styled.button<WrapperProps>`
         display: none;
       }
     `}
+
+    &:disabled {
+      cursor: not-allowed;
+    }
 
     ${!!size && wrapperModifiers[size]};
     ${!!size && wrapperModifiers[variant](theme)}

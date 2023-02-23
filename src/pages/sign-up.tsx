@@ -1,3 +1,5 @@
+import SignUpTemplate from 'templates/SignUp'
+
 export default function SignUp() {
-  return <h1>Sign Up</h1>
+  return <SignUpTemplate />
 }

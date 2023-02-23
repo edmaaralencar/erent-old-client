@@ -16,7 +16,7 @@ import api from 'services/apiClient'
 
 function PropertiesTemplate() {
   const [currentPage, setCurrentPage] = useState(1)
-  const [registersPerPage, setRegistersPerPage] = useState(9)
+  const [registersPerPage] = useState(9)
   const [modalOpen, setModalOpen] = useState({
     isModalOpen: false,
     id: 0

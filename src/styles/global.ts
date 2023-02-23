@@ -16,12 +16,16 @@ const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
     font-size: 62.5%;
   }
 
-  button, a {
+  button, a, .cursor {
     cursor: pointer;
   }
 
   .Toastify__toast-body {
     font-size: 1.6rem;
+  }
+
+  .cursor {
+    cursor: pointer;
   }
 
   ${({ theme, removeBg }) => css`

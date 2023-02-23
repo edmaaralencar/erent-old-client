@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import * as Dropdown from '@radix-ui/react-dropdown-menu'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Dropdown.Content)`
   position: absolute;
-  right: 0;
-  top: 5.4rem;
+  right: -2.5rem;
+  top: 1.5rem;
+  z-index: 10;
 
-  /* width: 100%; */
   width: 25rem;
   padding: 0.6rem 0;
 
@@ -22,6 +23,8 @@ export const Link = styled.a`
   padding: 1.2rem 2.4rem;
 
   text-decoration: none;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.gray.lighter};
 
   transition: all 300ms ease-in-out 0s;
 

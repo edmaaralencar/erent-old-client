@@ -6,8 +6,8 @@ const ButtonPagination = styled(Button)`
   width: auto;
 
   &:hover {
-    background-color: #8c8c8c;
-    color: #ffffff;
+    /* background-color: #8c8c8c; */
+    /* color: #ffffff; */
   }
 
   &:disabled {

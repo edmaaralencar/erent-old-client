@@ -7,6 +7,7 @@ import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import 'dayjs/locale/pt-br'
 
 import AuthProvider from 'context/AuthContext'
 import GlobalStyles from 'styles/global'

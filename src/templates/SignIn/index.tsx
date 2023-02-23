@@ -1,31 +1,51 @@
-import { useAuth } from 'context/AuthContext'
-import { FormEvent, useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import AuthForm from 'components/AuthForm'
+import Input from 'components/Input'
+import { SignInCredentials, useAuth } from 'context/AuthContext'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+
+const signUpSchema = yup.object().shape({
+  email: yup.string().required('E-mail obrigatório.'),
+  password: yup.string().required('Senha obrigatório.')
+})
 
 function SignInTemplate() {
   const { signIn } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<SignInCredentials>({
+    resolver: yupResolver(signUpSchema)
+  })
 
-  async function handleSubmit(event: FormEvent) {
-    event.preventDefault()
-
+  async function handleSignIn(values: SignInCredentials) {
+    console.log(values)
+    const { email, password } = values
     await signIn({ email, password })
   }
 
   return (
-    <form onSubmit={handleSubmit} action="">
-      <input
-        type="email"
-        value={email}
-        onChange={event => setEmail(event.target.value)}
+    <AuthForm
+      onSubmit={handleSubmit(handleSignIn)}
+      title="Faça seu login"
+      type="login"
+    >
+      <Input
+        variant="outlined"
+        label="E-mail"
+        error={errors.email as { message: string }}
+        {...register('email')}
       />
-      <input
+      <Input
         type="password"
-        value={password}
-        onChange={event => setPassword(event.target.value)}
+        variant="outlined"
+        label="Senha"
+        error={errors.password as { message: string }}
+        {...register('password')}
       />
-      <button type="submit">Enviar dados</button>
-    </form>
+    </AuthForm>
   )
 }
 
